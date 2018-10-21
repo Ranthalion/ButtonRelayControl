@@ -1,0 +1,12 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP FLOAT
+D XKC Y25 Liquid Level Sensor
+K Liquid Level Sensor Float Switch
+$ENDCMP
+#
+$CMP RELAY
+D 5V relay module
+$ENDCMP
+#
+#End Doc Library
