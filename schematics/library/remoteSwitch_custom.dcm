@@ -5,6 +5,10 @@ D XKC Y25 Liquid Level Sensor
 K Liquid Level Sensor Float Switch
 $ENDCMP
 #
+$CMP HLK-5M05
+D HLK-5M05 Power Module
+$ENDCMP
+#
 $CMP RELAY
 D 5V relay module
 $ENDCMP

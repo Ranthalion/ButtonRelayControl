@@ -1,0 +1,176 @@
+format_version: '2'
+name: ButtonRelayControl
+versions:
+  api: '1.0'
+  backend: 1.4.93
+  commit: 9c29f8365cf76e9937d19b1e765a83bc7a80e4e9
+  content: 1.0.1193
+  content_pack_name: acme-packs-all
+  format: '2'
+  frontend: 1.4.1787
+board:
+  identifier: CustomBoard
+  device: ATmega328PB-AU
+details: null
+application: null
+middlewares: {}
+drivers:
+  CPU:
+    user_label: CPU
+    definition: 'Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::CPU::driver_config_definition::SYSCTRL::Drivers:SYSCTRL:'
+    functionality: System
+    api: 'Drivers:SYSCTRL:'
+    configuration:
+      async_input_speed: 32768
+      clkadc_oscillator: Input clock
+      clkasy_oscillator: Async input clock
+      clkcpu_oscillator: Input clock
+      clkio_oscillator: Input clock
+      clkptc_oscillator: Input clock
+      cpu_clock_source: CLKcpu
+      cpu_sreg_i: false
+      enable_async_input: false
+      enable_clkadc: false
+      enable_clkadc_enable: false
+      enable_clkasy: false
+      enable_clkasy_enable: false
+      enable_clkcpu: true
+      enable_clkio: true
+      enable_clkptc: false
+      enable_clkptc_enable: false
+      enable_core_clock: true
+      enable_input: true
+      input_speed: 8000000
+      pm_ivsel: Interrupt vector placed at the beginning of main FLASH memory
+      pm_pud: false
+      pm_se: false
+      pm_sm: Idle
+      prescaler_divider: '1'
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: Core
+          input: Core
+        configuration: {}
+  LED_SW1:
+    user_label: LED_SW1
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC1::driver_config_definition::TC16.Mode.5.Fast.8-bit.PWM::Drivers:PWM:Basic
+    functionality: PWM
+    api: Drivers:PWM:Basic
+    configuration:
+      callback_rate: 0
+      inc_overflow_irq: true
+      pwm_top: '0xff'
+      tc16_coma: Set OCA on Compare Match, clear OCA on BOTTOM (inverting mode)
+      tc16_comb: Normal port operation, OCB disconnected
+      tc16_cs: IO clock divided by 64
+      tc16_ices: Falling edge will trigger input capture
+      tc16_icie: false
+      tc16_icnc: false
+      tc16_icr: 0
+      tc16_ociea: false
+      tc16_ocieb: false
+      tc16_orca: 150
+      tc16_orcb: 0
+      tc16_toie: true
+    optional_signals:
+    - identifier: LED_SW1:OCA
+      pad: PB1
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::TC1.OCA
+      name: TC1/OCA
+      label: OCA
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC16
+          input: CLKio
+        configuration:
+          tc16_clock_source: CLKio
+  LED_SW2:
+    user_label: LED_SW2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC3::driver_config_definition::TC16.Mode.5.Fast.8-bit.PWM::Drivers:PWM:Basic
+    functionality: PWM
+    api: Drivers:PWM:Basic
+    configuration:
+      callback_rate: 0
+      inc_overflow_irq: true
+      pwm_top: '0xff'
+      tc16_coma: Set OCA on Compare Match, clear OCA on BOTTOM (inverting mode)
+      tc16_comb: Normal port operation, OCB disconnected
+      tc16_cs: IO clock divided by 64
+      tc16_ices: Falling edge will trigger input capture
+      tc16_icie: false
+      tc16_icnc: false
+      tc16_icr: 0
+      tc16_ociea: false
+      tc16_ocieb: false
+      tc16_orca: 100
+      tc16_orcb: 0
+      tc16_toie: true
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC16
+          input: CLKio
+        configuration:
+          tc16_clock_source: CLKio
+pads:
+  SENS1:
+    name: PD3
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD3
+    mode: Digital input
+    user_label: SENS1
+    configuration: null
+  RELAY2:
+    name: PE1
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PE1
+    mode: Digital output
+    user_label: RELAY2
+    configuration: null
+  RELAY1:
+    name: PB6
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB6
+    mode: Digital output
+    user_label: RELAY1
+    configuration: null
+  SW2:
+    name: PD7
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD7
+    mode: Digital input
+    user_label: SW2
+    configuration:
+      pad_pull_config: Pull-up
+  PB1:
+    name: PB1
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB1
+    mode: Digital output
+    user_label: PB1
+    configuration: null
+  SW1:
+    name: PB2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB2
+    mode: Digital input
+    user_label: SW1
+    configuration:
+      pad_pull_config: Pull-up
+  LED:
+    name: PD0
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD0
+    mode: Digital output
+    user_label: LED
+    configuration:
+      pad_initial_level: High
+  SENS2:
+    name: PD2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD2
+    mode: Digital input
+    user_label: SENS2
+    configuration: null
+toolchain_options: []

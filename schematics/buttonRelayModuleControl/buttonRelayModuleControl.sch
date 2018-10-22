@@ -15,17 +15,6 @@ Comment3 ""
 Comment4 "Controls 2 channels of relays based on the states of 2 push buttons and 2 float switches"
 $EndDescr
 $Comp
-L remoteSwitch_custom:TSP-03 U2
-U 1 1 5B5E5DB0
-P 2200 1300
-F 0 "U2" H 2200 1300 60  0000 C CNN
-F 1 "TSP-05" H 2200 1550 60  0000 C CNN
-F 2 "Power_Supply:HLK-PM05" H 2200 1300 60  0001 C CNN
-F 3 "" H 2200 1300 60  0000 C CNN
-	1    2200 1300
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:Screw_Terminal_01x02 J1
 U 1 1 5B5E5E9C
 P 850 1350
@@ -136,7 +125,7 @@ U 1 1 5B5E6A97
 P 2250 3050
 F 0 "SW1" H 2250 3435 50  0000 C CNN
 F 1 "SW_Push_LED" H 2250 3344 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2250 3350 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B04B-XH-A_1x04_P2.50mm_Vertical" H 2250 3350 50  0001 C CNN
 F 3 "" H 2250 3350 50  0001 C CNN
 	1    2250 3050
 	1    0    0    -1  
@@ -147,7 +136,7 @@ U 1 1 5B5E6BA9
 P 2250 3900
 F 0 "SW2" H 2250 4285 50  0000 C CNN
 F 1 "SW_Push_LED" H 2250 4194 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 2250 4200 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B04B-XH-A_1x04_P2.50mm_Vertical" H 2250 4200 50  0001 C CNN
 F 3 "" H 2250 4200 50  0001 C CNN
 	1    2250 3900
 	1    0    0    -1  
@@ -282,12 +271,12 @@ Connection ~ 5000 1350
 $Comp
 L Device:R_US R3
 U 1 1 5B605473
-P 6300 3500
-F 0 "R3" V 6400 3500 50  0000 C CNN
-F 1 "10k" V 6500 3500 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 6340 3490 50  0001 C CNN
-F 3 "~" H 6300 3500 50  0001 C CNN
-	1    6300 3500
+P 5850 3500
+F 0 "R3" V 5750 3500 50  0000 C CNN
+F 1 "10k" V 5950 3500 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 5890 3490 50  0001 C CNN
+F 3 "~" H 5850 3500 50  0001 C CNN
+	1    5850 3500
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -296,9 +285,6 @@ Wire Wire Line
 	5600 2450 5850 2450
 Wire Wire Line
 	5600 2650 5850 2650
-Wire Wire Line
-	6300 3650 5600 3650
-Connection ~ 6300 3650
 $Comp
 L power:GND #PWR0115
 U 1 1 5B60FD8D
@@ -358,7 +344,7 @@ Text Label 2600 2950 2    50   ~ 0
 SW1
 Text Label 5900 4550 2    50   ~ 0
 SW2
-Text Label 6550 3650 2    50   ~ 0
+Text Label 6100 3650 2    50   ~ 0
 RESET
 Text Label 5850 2450 2    50   ~ 0
 MOSI0
@@ -400,12 +386,11 @@ Wire Wire Line
 Text Label 1400 3900 0    50   ~ 0
 LED_SW2
 Wire Wire Line
-	6300 3650 6550 3650
+	5850 3650 6100 3650
 Wire Wire Line
 	7650 2300 7950 2300
 Text Label 5850 2350 2    50   ~ 0
 SW1
-NoConn ~ 5600 3850
 NoConn ~ 5600 3950
 NoConn ~ 5600 3050
 NoConn ~ 5600 3150
@@ -417,7 +402,7 @@ U 1 1 5BD15753
 P 1350 5200
 F 0 "FLT1" H 1556 5665 50  0000 C CNN
 F 1 "FLOAT" H 1556 5574 50  0000 C CNN
-F 2 "Connectors_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical" H 1500 5195 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B04B-XH-A_1x04_P2.50mm_Vertical" H 1500 5195 50  0001 C CNN
 F 3 "" H 1500 5195 50  0001 C CNN
 	1    1350 5200
 	1    0    0    -1  
@@ -455,12 +440,12 @@ $EndComp
 $Comp
 L power:+5V #PWR010
 U 1 1 5BD3D829
-P 6300 3350
-F 0 "#PWR010" H 6300 3200 50  0001 C CNN
-F 1 "+5V" H 6315 3523 50  0000 C CNN
-F 2 "" H 6300 3350 50  0001 C CNN
-F 3 "" H 6300 3350 50  0001 C CNN
-	1    6300 3350
+P 5850 3350
+F 0 "#PWR010" H 5850 3200 50  0001 C CNN
+F 1 "+5V" H 5865 3523 50  0000 C CNN
+F 2 "" H 5850 3350 50  0001 C CNN
+F 3 "" H 5850 3350 50  0001 C CNN
+	1    5850 3350
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -524,7 +509,7 @@ U 1 1 5BCC1595
 P 8450 2300
 F 0 "RLY2" H 8828 2346 50  0000 L CNN
 F 1 "RELAY" H 8828 2255 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 8550 2300 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B03B-XH-A_1x03_P2.50mm_Vertical" H 8550 2300 50  0001 C CNN
 F 3 "" H 8550 2300 50  0001 C CNN
 	1    8450 2300
 	1    0    0    -1  
@@ -557,7 +542,7 @@ U 1 1 5BCCF162
 P 8450 3900
 F 0 "RLY1" H 8828 3946 50  0000 L CNN
 F 1 "RELAY" H 8828 3855 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 8550 3900 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B03B-XH-A_1x03_P2.50mm_Vertical" H 8550 3900 50  0001 C CNN
 F 3 "" H 8550 3900 50  0001 C CNN
 	1    8450 3900
 	1    0    0    -1  
@@ -597,7 +582,7 @@ U 1 1 5BCE51EF
 P 1650 6600
 F 0 "FLT2" H 1856 7065 50  0000 C CNN
 F 1 "FLOAT" H 1856 6974 50  0000 C CNN
-F 2 "Connectors_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical" H 1800 6595 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B04B-XH-A_1x04_P2.50mm_Vertical" H 1800 6595 50  0001 C CNN
 F 3 "" H 1800 6595 50  0001 C CNN
 	1    1650 6600
 	1    0    0    -1  
@@ -663,4 +648,57 @@ NoConn ~ 5600 2150
 Wire Wire Line
 	5600 4550 5900 4550
 NoConn ~ 5600 3250
+$Comp
+L remoteSwitch_custom:HLK-5M05 U1
+U 1 1 5BCD3DE1
+P 2200 1300
+F 0 "U1" H 2200 1675 50  0000 C CNN
+F 1 "HLK-5M05" H 2200 1584 50  0000 C CNN
+F 2 "remoteSwitch_footprints:HLK-5M05" H 2200 1300 50  0001 C CNN
+F 3 "" H 2200 1300 50  0001 C CNN
+	1    2200 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3650 5850 3650
+Connection ~ 5850 3650
+$Comp
+L Device:R_US R4
+U 1 1 5BCD4302
+P 6000 3850
+F 0 "R4" V 5900 3850 50  0000 C CNN
+F 1 "1k" V 6100 3850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 6040 3840 50  0001 C CNN
+F 3 "~" H 6000 3850 50  0001 C CNN
+	1    6000 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 5BCD443C
+P 6350 3850
+F 0 "D1" H 6350 3950 50  0000 C CNN
+F 1 "LED" H 6350 3750 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6350 3850 50  0001 C CNN
+F 3 "~" H 6350 3850 50  0001 C CNN
+	1    6350 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR015
+U 1 1 5BCD4490
+P 6500 3800
+F 0 "#PWR015" H 6500 3650 50  0001 C CNN
+F 1 "+5V" H 6515 3973 50  0000 C CNN
+F 2 "" H 6500 3800 50  0001 C CNN
+F 3 "" H 6500 3800 50  0001 C CNN
+	1    6500 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3850 5850 3850
+Wire Wire Line
+	6150 3850 6200 3850
+Wire Wire Line
+	6500 3850 6500 3800
 $EndSCHEMATC
