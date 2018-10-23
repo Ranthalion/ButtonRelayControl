@@ -35,3 +35,15 @@
 
 #include <driver_init.h>
 #include <compiler.h>
+
+ISR(PCINT0_vect)
+{
+
+	/* Insert your pin change 0 interrupt handling code here */
+}
+
+ISR(PCINT2_vect)
+{
+
+	/* Insert your pin change 2 interrupt handling code here */
+}

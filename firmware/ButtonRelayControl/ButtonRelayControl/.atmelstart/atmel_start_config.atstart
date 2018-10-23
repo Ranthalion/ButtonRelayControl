@@ -57,9 +57,9 @@ drivers:
     functionality: External_IRQ
     api: Drivers:EXINT:Init
     configuration:
-      exint_isc0: The low level of ISC0 generates an interrupt request
-      exint_isc1: The low level of ISC1 generates an interrupt request
-      inc_isr_harness: false
+      exint_isc0: Any logical change on ISC0 generates an interrupt request
+      exint_isc1: Any logical change on ISC1 generates an interrupt request
+      inc_isr_harness: true
     optional_signals:
     - identifier: EXTERNAL_IRQ_0:PCINT/2
       pad: PB2
@@ -192,7 +192,8 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD7
     mode: Digital input
     user_label: SW2
-    configuration: null
+    configuration:
+      pad_pull_config: Pull-up
   PB1:
     name: PB1
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB1
@@ -204,7 +205,8 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB2
     mode: Digital input
     user_label: SW1
-    configuration: null
+    configuration:
+      pad_pull_config: Pull-up
   LED:
     name: PD0
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD0

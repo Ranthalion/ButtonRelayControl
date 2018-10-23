@@ -47,7 +47,7 @@ void EXTERNAL_IRQ_0_initialization(void)
 	    // <id> pad_pull_config
 	    // <PORT_PULL_OFF"> Off
 	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_OFF);
+	    PORT_PULL_UP);
 
 	// Set pin direction to input
 	SENS2_set_dir(PORT_DIR_IN);
@@ -77,7 +77,7 @@ void EXTERNAL_IRQ_0_initialization(void)
 	    // <id> pad_pull_config
 	    // <PORT_PULL_OFF"> Off
 	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_OFF);
+	    PORT_PULL_UP);
 
 	EXTERNAL_IRQ_0_init();
 }
