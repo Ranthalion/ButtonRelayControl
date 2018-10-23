@@ -1,8 +1,7 @@
 /**
  * \file
  *
- * \brief PWM basic driver example.
- *
+ * \brief USART related functionality implementation.
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
@@ -22,14 +21,36 @@
     FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
     ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
     THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
  */
 
-#ifndef PWM_BASIC_EXAMPLE_H
-#define PWM_BASIC_EXAMPLE_H
+/**
+ * \addtogroup doc_driver_exint
+ *
+ * \section doc_driver_exint_rev Revision History
+ * - v0.0.0.1 Initial Commit
+ *
+ *@{
+ */
+#include <exint.h>
 
-uint8_t LED_SW2_test_pwm_basic(void);
+/**
+ * \brief Initialize EXTERNAL_IRQ_0 interface
+ *
+ * \return Initialization status.
+ */
+int8_t EXTERNAL_IRQ_0_init()
+{
 
-uint8_t LED_SW1_test_pwm_basic(void);
+	PCICR = (1 << PCIE0) | // Enable pin change interrupt 0
+	        (1 << PCIE2) | // Enable pin change interrupt 2
+	        (1 << PCIE2) | // Enable pin change interrupt 2
+	        (1 << PCIE2);  // Enable pin change interrupt 2
 
-#endif /* PWM_BASIC_EXAMPLE_H */
+	PCMSK2 = (1 << PCINT18) | // Pin change enable mask 18
+	         (1 << PCINT19) | // Pin change enable mask 19
+	         (1 << PCINT23);  // Pin change enable mask 23
+
+	PCMSK0 = (1 << PCINT2); // Pin change enable mask 2
+
+	return 0;
+}

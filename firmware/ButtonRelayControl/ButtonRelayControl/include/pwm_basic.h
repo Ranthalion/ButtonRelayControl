@@ -36,6 +36,31 @@ extern "C" {
 
 typedef void (*pwm_irq_cb_t)(void);
 
+#define LED_SW2_INTERRUPT_CB_RATE 0
+
+/** The datatype matching the bitwidth of the PWM hardware */
+typedef uint8_t LED_SW2_register_t;
+
+int8_t LED_SW2_init(void);
+
+void LED_SW2_enable();
+
+void LED_SW2_disable();
+
+void LED_SW2_enable_output_ch0();
+
+void LED_SW2_disable_output_ch0();
+
+void LED_SW2_enable_output_ch1();
+
+void LED_SW2_disable_output_ch1();
+
+void LED_SW2_load_counter(LED_SW2_register_t counter_value);
+
+void LED_SW2_load_duty_cycle_ch0(LED_SW2_register_t duty_value);
+
+void LED_SW2_load_duty_cycle_ch1(LED_SW2_register_t duty_value);
+
 #define LED_SW1_INTERRUPT_CB_RATE 0
 
 /** The datatype matching the bitwidth of the PWM hardware */
@@ -60,35 +85,6 @@ void LED_SW1_load_counter(LED_SW1_register_t counter_value);
 void LED_SW1_load_duty_cycle_ch0(LED_SW1_register_t duty_value);
 
 void LED_SW1_load_duty_cycle_ch1(LED_SW1_register_t duty_value);
-
-void LED_SW1_register_callback(pwm_irq_cb_t f);
-
-#define LED_SW2_INTERRUPT_CB_RATE 0
-
-/** The datatype matching the bitwidth of the PWM hardware */
-typedef uint16_t LED_SW2_register_t;
-
-int8_t LED_SW2_init(void);
-
-void LED_SW2_enable();
-
-void LED_SW2_disable();
-
-void LED_SW2_enable_output_ch0();
-
-void LED_SW2_disable_output_ch0();
-
-void LED_SW2_enable_output_ch1();
-
-void LED_SW2_disable_output_ch1();
-
-void LED_SW2_load_counter(LED_SW2_register_t counter_value);
-
-void LED_SW2_load_duty_cycle_ch0(LED_SW2_register_t duty_value);
-
-void LED_SW2_load_duty_cycle_ch1(LED_SW2_register_t duty_value);
-
-void LED_SW2_register_callback(pwm_irq_cb_t f);
 
 #ifdef __cplusplus
 }

@@ -10,7 +10,11 @@ examples\src\pwm_basic_example.c
 
 main.c
 
+program.c
+
 src\driver_init.c
+
+src\exint.c
 
 src\protected_io.S
 

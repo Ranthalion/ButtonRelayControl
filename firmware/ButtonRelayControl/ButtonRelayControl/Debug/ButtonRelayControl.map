@@ -8,8 +8,8 @@ d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0
 Allocating common symbols
 Common symbol       size              file
 
-PWM_0_duty          0x1               examples/src/pwm_basic_example.o
-PWM_1_duty          0x2               examples/src/pwm_basic_example.o
+LED_SW2_duty        0x1               examples/src/pwm_basic_example.o
+LED_SW1_duty        0x2               examples/src/pwm_basic_example.o
 
 Discarded input sections
 
@@ -31,82 +31,78 @@ Discarded input sections
  .text          0x00000000        0x0 examples/src/pwm_basic_example.o
  .data          0x00000000        0x0 examples/src/pwm_basic_example.o
  .bss           0x00000000        0x0 examples/src/pwm_basic_example.o
- .text.PWM_0_pwm_handler_cb
-                0x00000000       0x26 examples/src/pwm_basic_example.o
- .text.PWM_1_pwm_handler_cb
-                0x00000000       0x32 examples/src/pwm_basic_example.o
- .text.PWM_0_test_pwm_basic
-                0x00000000       0x2c examples/src/pwm_basic_example.o
- .text.PWM_1_test_pwm_basic
-                0x00000000       0x30 examples/src/pwm_basic_example.o
- .bss.PWM_1_isr_executed_counter
+ .text.LED_SW2_test_pwm_basic
+                0x00000000       0x14 examples/src/pwm_basic_example.o
+ .text.LED_SW1_test_pwm_basic
+                0x00000000       0x18 examples/src/pwm_basic_example.o
+ .bss.LED_SW1_isr_executed_counter
                 0x00000000        0x2 examples/src/pwm_basic_example.o
- .bss.PWM_0_isr_executed_counter
+ .bss.LED_SW2_isr_executed_counter
                 0x00000000        0x2 examples/src/pwm_basic_example.o
- .debug_info    0x00000000      0x26d examples/src/pwm_basic_example.o
- .debug_abbrev  0x00000000       0xc8 examples/src/pwm_basic_example.o
+ .debug_info    0x00000000      0x1d3 examples/src/pwm_basic_example.o
+ .debug_abbrev  0x00000000       0xae examples/src/pwm_basic_example.o
  .debug_aranges
-                0x00000000       0x38 examples/src/pwm_basic_example.o
- .debug_ranges  0x00000000       0x28 examples/src/pwm_basic_example.o
- .debug_line    0x00000000      0x16c examples/src/pwm_basic_example.o
- .debug_str     0x00000000      0x317 examples/src/pwm_basic_example.o
+                0x00000000       0x28 examples/src/pwm_basic_example.o
+ .debug_ranges  0x00000000       0x18 examples/src/pwm_basic_example.o
+ .debug_line    0x00000000       0xfb examples/src/pwm_basic_example.o
+ .debug_str     0x00000000      0x2d9 examples/src/pwm_basic_example.o
  .comment       0x00000000       0x31 examples/src/pwm_basic_example.o
- .debug_frame   0x00000000       0x54 examples/src/pwm_basic_example.o
+ .debug_frame   0x00000000       0x34 examples/src/pwm_basic_example.o
  COMMON         0x00000000        0x3 examples/src/pwm_basic_example.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 program.o
+ .data          0x00000000        0x0 program.o
+ .bss           0x00000000        0x0 program.o
  .text          0x00000000        0x0 src/driver_init.o
  .data          0x00000000        0x0 src/driver_init.o
  .bss           0x00000000        0x0 src/driver_init.o
+ .text          0x00000000        0x0 src/exint.o
+ .data          0x00000000        0x0 src/exint.o
+ .bss           0x00000000        0x0 src/exint.o
  .text          0x00000000        0x0 src/protected_io.o
  .data          0x00000000        0x0 src/protected_io.o
  .bss           0x00000000        0x0 src/protected_io.o
  .text          0x00000000        0x0 src/pwm_basic.o
  .data          0x00000000        0x0 src/pwm_basic.o
  .bss           0x00000000        0x0 src/pwm_basic.o
- .text.PWM_0_enable
+ .text.LED_SW2_enable
                 0x00000000        0x2 src/pwm_basic.o
- .text.PWM_0_disable
+ .text.LED_SW2_disable
                 0x00000000        0x2 src/pwm_basic.o
- .text.PWM_0_enable_output_ch0
+ .text.LED_SW2_enable_output_ch0
+                0x00000000        0x8 src/pwm_basic.o
+ .text.LED_SW2_disable_output_ch0
                 0x00000000        0x6 src/pwm_basic.o
- .text.PWM_0_disable_output_ch0
+ .text.LED_SW2_enable_output_ch1
                 0x00000000        0x6 src/pwm_basic.o
- .text.PWM_0_enable_output_ch1
+ .text.LED_SW2_disable_output_ch1
                 0x00000000        0x6 src/pwm_basic.o
- .text.PWM_0_disable_output_ch1
-                0x00000000        0x6 src/pwm_basic.o
- .text.PWM_0_load_counter
+ .text.LED_SW2_load_counter
                 0x00000000        0x4 src/pwm_basic.o
- .text.PWM_0_load_duty_cycle_ch0
+ .text.LED_SW2_load_duty_cycle_ch0
                 0x00000000        0x4 src/pwm_basic.o
- .text.PWM_0_load_duty_cycle_ch1
+ .text.LED_SW2_load_duty_cycle_ch1
                 0x00000000        0x4 src/pwm_basic.o
- .text.PWM_0_register_callback
-                0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_enable
+ .text.LED_SW1_enable
                 0x00000000        0x2 src/pwm_basic.o
- .text.PWM_1_disable
+ .text.LED_SW1_disable
                 0x00000000        0x2 src/pwm_basic.o
- .text.PWM_1_enable_output_ch0
+ .text.LED_SW1_enable_output_ch0
+                0x00000000        0xc src/pwm_basic.o
+ .text.LED_SW1_disable_output_ch0
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_disable_output_ch0
+ .text.LED_SW1_enable_output_ch1
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_enable_output_ch1
+ .text.LED_SW1_disable_output_ch1
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_disable_output_ch1
+ .text.LED_SW1_load_counter
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_load_counter
+ .text.LED_SW1_load_duty_cycle_ch0
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_load_duty_cycle_ch0
+ .text.LED_SW1_load_duty_cycle_ch1
                 0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_load_duty_cycle_ch1
-                0x00000000        0xa src/pwm_basic.o
- .text.PWM_1_register_callback
-                0x00000000        0xa src/pwm_basic.o
- .bss.PWM_1_cb  0x00000000        0x2 src/pwm_basic.o
- .bss.PWM_0_cb  0x00000000        0x2 src/pwm_basic.o
  .text          0x00000000        0x0 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -160,7 +156,9 @@ LOAD atmel_start.o
 LOAD driver_isr.o
 LOAD examples/src/pwm_basic_example.o
 LOAD main.o
+LOAD program.o
 LOAD src/driver_init.o
+LOAD src/exint.o
 LOAD src/protected_io.o
 LOAD src/pwm_basic.o
 START GROUP
@@ -270,7 +268,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1ce
+.text           0x00000000      0x1f4
  *(.vectors)
  .vectors       0x00000000       0xb4 D:/Programs/Atmel/7.0/Packs/Atmel/ATmega_DFP/1.2.272/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
                 0x00000000                __vector_default
@@ -345,6 +343,7 @@ END GROUP
                 0x000000d8                __vector_30
                 0x000000d8                __vector_25
                 0x000000d8                __vector_11
+                0x000000d8                __vector_13
                 0x000000d8                __vector_17
                 0x000000d8                __vector_19
                 0x000000d8                __vector_7
@@ -367,6 +366,7 @@ END GROUP
                 0x000000d8                __vector_26
                 0x000000d8                __vector_14
                 0x000000d8                __vector_10
+                0x000000d8                __vector_16
                 0x000000d8                __vector_18
                 0x000000d8                __vector_20
                 0x000000d8                __vector_42
@@ -375,37 +375,39 @@ END GROUP
  .text.atmel_start_init
                 0x000000dc        0x6 atmel_start.o
                 0x000000dc                atmel_start_init
- .text.main     0x000000e2        0x6 main.o
+ .text.main     0x000000e2        0xa main.o
                 0x000000e2                main
- .text.PWM_0_initialization
-                0x000000e8        0xa src/driver_init.o
-                0x000000e8                PWM_0_initialization
- .text.PWM_1_initialization
-                0x000000f2        0xa src/driver_init.o
-                0x000000f2                PWM_1_initialization
+ .text.loop     0x000000ec       0x18 program.o
+                0x000000ec                loop
+ .text.EXTERNAL_IRQ_0_initialization
+                0x00000104       0x16 src/driver_init.o
+                0x00000104                EXTERNAL_IRQ_0_initialization
+ .text.LED_SW2_initialization
+                0x0000011a        0xa src/driver_init.o
+                0x0000011a                LED_SW2_initialization
+ .text.LED_SW1_initialization
+                0x00000124        0xa src/driver_init.o
+                0x00000124                LED_SW1_initialization
  .text.system_init
-                0x000000fc       0x4e src/driver_init.o
-                0x000000fc                system_init
+                0x0000012e       0x5e src/driver_init.o
+                0x0000012e                system_init
+ .text.EXTERNAL_IRQ_0_init
+                0x0000018c       0x16 src/exint.o
+                0x0000018c                EXTERNAL_IRQ_0_init
  .text.protected_write_io
-                0x0000014a        0xe src/protected_io.o
-                0x0000014a                protected_write_io
- .text.PWM_0_init
-                0x00000158       0x12 src/pwm_basic.o
-                0x00000158                PWM_0_init
- .text.__vector_16
-                0x0000016a       0x24 src/pwm_basic.o
-                0x0000016a                __vector_16
- .text.PWM_1_init
-                0x0000018e       0x18 src/pwm_basic.o
-                0x0000018e                PWM_1_init
- .text.__vector_13
-                0x000001a6       0x24 src/pwm_basic.o
-                0x000001a6                __vector_13
-                0x000001ca                . = ALIGN (0x2)
+                0x000001a2        0xe src/protected_io.o
+                0x000001a2                protected_write_io
+ .text.LED_SW2_init
+                0x000001b0       0x1a src/pwm_basic.o
+                0x000001b0                LED_SW2_init
+ .text.LED_SW1_init
+                0x000001ca       0x26 src/pwm_basic.o
+                0x000001ca                LED_SW1_init
+                0x000001f0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001ca        0x0 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000001ca                _exit
-                0x000001ca                exit
+ .fini9         0x000001f0        0x0 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000001f0                _exit
+                0x000001f0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -424,11 +426,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001ca        0x4 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000001f0        0x4 d:/programs/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001ce                _etext = .
+                0x000001f4                _etext = .
 
-.data           0x00800100        0x0 load address 0x000001ce
+.data           0x00800100        0x0 load address 0x000001f4
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -440,24 +442,20 @@ END GROUP
                 0x00800100                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800100        0x2
+.bss            0x00800100        0x0
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.callback_count.1883
-                0x00800100        0x1 src/pwm_basic.o
- .bss.callback_count.1850
-                0x00800101        0x1 src/pwm_basic.o
  *(COMMON)
-                0x00800102                PROVIDE (__bss_end, .)
-                0x000001ce                __data_load_start = LOADADDR (.data)
-                0x000001ce                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800100                PROVIDE (__bss_end, .)
+                0x000001f4                __data_load_start = LOADADDR (.data)
+                0x000001f4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800102        0x0
+.noinit         0x00800100        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800102                _end = .
+                0x00800100                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -502,7 +500,9 @@ END GROUP
  .comment       0x00000000       0x30 atmel_start.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 program.o
  .comment       0x00000030       0x31 src/driver_init.o
+ .comment       0x00000030       0x31 src/exint.o
  .comment       0x00000030       0x31 src/pwm_basic.o
 
 .note.gnu.avr.deviceinfo
@@ -525,72 +525,88 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x168
+.debug_aranges  0x00000000      0x190
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 atmel_start.o
  .debug_aranges
                 0x00000020       0x20 main.o
  .debug_aranges
-                0x00000040       0x30 src/driver_init.o
+                0x00000040       0x20 program.o
  .debug_aranges
-                0x00000070       0x20 src/protected_io.o
+                0x00000060       0x38 src/driver_init.o
  .debug_aranges
-                0x00000090       0xd8 src/pwm_basic.o
+                0x00000098       0x20 src/exint.o
+ .debug_aranges
+                0x000000b8       0x20 src/protected_io.o
+ .debug_aranges
+                0x000000d8       0xb8 src/pwm_basic.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1334
+.debug_info     0x00000000     0x1a21
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x8ea D:/Programs/Atmel/7.0/Packs/Atmel/ATmega_DFP/1.2.272/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
  .debug_info    0x000008ea       0x93 atmel_start.o
- .debug_info    0x0000097d       0x98 main.o
- .debug_info    0x00000a15      0x4cd src/driver_init.o
- .debug_info    0x00000ee2       0x90 src/protected_io.o
- .debug_info    0x00000f72      0x3c2 src/pwm_basic.o
+ .debug_info    0x0000097d       0xae main.o
+ .debug_info    0x00000a2b      0x159 program.o
+ .debug_info    0x00000b84      0xab0 src/driver_init.o
+ .debug_info    0x00001634       0x91 src/exint.o
+ .debug_info    0x000016c5       0x90 src/protected_io.o
+ .debug_info    0x00001755      0x2cc src/pwm_basic.o
 
-.debug_abbrev   0x00000000      0xbfb
+.debug_abbrev   0x00000000      0xcd5
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x86e D:/Programs/Atmel/7.0/Packs/Atmel/ATmega_DFP/1.2.272/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
  .debug_abbrev  0x0000086e       0x63 atmel_start.o
  .debug_abbrev  0x000008d1       0x68 main.o
- .debug_abbrev  0x00000939      0x145 src/driver_init.o
- .debug_abbrev  0x00000a7e       0x14 src/protected_io.o
- .debug_abbrev  0x00000a92      0x169 src/pwm_basic.o
+ .debug_abbrev  0x00000939       0xfa program.o
+ .debug_abbrev  0x00000a33      0x154 src/driver_init.o
+ .debug_abbrev  0x00000b87       0x51 src/exint.o
+ .debug_abbrev  0x00000bd8       0x14 src/protected_io.o
+ .debug_abbrev  0x00000bec       0xe9 src/pwm_basic.o
 
-.debug_line     0x00000000      0x74a
+.debug_line     0x00000000      0x946
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1a5 D:/Programs/Atmel/7.0/Packs/Atmel/ATmega_DFP/1.2.272/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
  .debug_line    0x000001a5       0x60 atmel_start.o
- .debug_line    0x00000205       0x51 main.o
- .debug_line    0x00000256      0x1ae src/driver_init.o
- .debug_line    0x00000404       0x67 src/protected_io.o
- .debug_line    0x0000046b      0x2df src/pwm_basic.o
+ .debug_line    0x00000205       0x6b main.o
+ .debug_line    0x00000270      0x11b program.o
+ .debug_line    0x0000038b      0x233 src/driver_init.o
+ .debug_line    0x000005be       0xa4 src/exint.o
+ .debug_line    0x00000662       0x67 src/protected_io.o
+ .debug_line    0x000006c9      0x27d src/pwm_basic.o
 
-.debug_frame    0x00000000      0x240
+.debug_frame    0x00000000      0x238
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 atmel_start.o
  .debug_frame   0x00000024       0x24 main.o
- .debug_frame   0x00000048       0x44 src/driver_init.o
- .debug_frame   0x0000008c      0x1b4 src/pwm_basic.o
+ .debug_frame   0x00000048       0x24 program.o
+ .debug_frame   0x0000006c       0x54 src/driver_init.o
+ .debug_frame   0x000000c0       0x24 src/exint.o
+ .debug_frame   0x000000e4      0x154 src/pwm_basic.o
 
-.debug_str      0x00000000      0x86d
+.debug_str      0x00000000      0xa49
  *(.debug_str)
  .debug_str     0x00000000      0x318 D:/Programs/Atmel/7.0/Packs/Atmel/ATmega_DFP/1.2.272/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
  .debug_str     0x00000318      0x162 atmel_start.o
                                 0x196 (size before relaxing)
- .debug_str     0x0000047a       0x11 main.o
-                                0x188 (size before relaxing)
- .debug_str     0x0000048b      0x18d src/driver_init.o
-                                0x315 (size before relaxing)
- .debug_str     0x00000618      0x255 src/pwm_basic.o
-                                0x3e0 (size before relaxing)
+ .debug_str     0x0000047a       0x16 main.o
+                                0x18d (size before relaxing)
+ .debug_str     0x00000490       0x8a program.o
+                                0x1f5 (size before relaxing)
+ .debug_str     0x0000051a      0x319 src/driver_init.o
+                                0x4b3 (size before relaxing)
+ .debug_str     0x00000833        0xf src/exint.o
+                                0x198 (size before relaxing)
+ .debug_str     0x00000842      0x207 src/pwm_basic.o
+                                0x396 (size before relaxing)
 
-.debug_loc      0x00000000      0x1a7
+.debug_loc      0x00000000      0x3a7
  *(.debug_loc)
- .debug_loc     0x00000000      0x12f src/driver_init.o
- .debug_loc     0x0000012f       0x78 src/pwm_basic.o
+ .debug_loc     0x00000000       0x5c program.o
+ .debug_loc     0x0000005c      0x34b src/driver_init.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -610,12 +626,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x108
+.debug_ranges   0x00000000      0x110
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 atmel_start.o
  .debug_ranges  0x00000010       0x10 main.o
- .debug_ranges  0x00000020       0x20 src/driver_init.o
- .debug_ranges  0x00000040       0xc8 src/pwm_basic.o
+ .debug_ranges  0x00000020       0x10 program.o
+ .debug_ranges  0x00000030       0x28 src/driver_init.o
+ .debug_ranges  0x00000058       0x10 src/exint.o
+ .debug_ranges  0x00000068       0xa8 src/pwm_basic.o
 
 .debug_macro
  *(.debug_macro)

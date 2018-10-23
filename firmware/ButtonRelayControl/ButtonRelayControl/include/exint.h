@@ -1,8 +1,7 @@
 /**
  * \file
  *
- * \brief PWM basic driver example.
- *
+ * \brief EXINT related functionality declaration.
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms,you may use this software and
@@ -22,14 +21,25 @@
     FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
     ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
     THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
  */
 
-#ifndef PWM_BASIC_EXAMPLE_H
-#define PWM_BASIC_EXAMPLE_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-uint8_t LED_SW2_test_pwm_basic(void);
+#ifndef EXINT_H_INCLUDED
+#define EXINT_H_INCLUDED
 
-uint8_t LED_SW1_test_pwm_basic(void);
+#include <compiler.h>
 
-#endif /* PWM_BASIC_EXAMPLE_H */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int8_t EXTERNAL_IRQ_0_init();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* EXINT_H_INCLUDED */

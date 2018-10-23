@@ -37,6 +37,7 @@
       <description>Atmel Start Framework</description>
       <RTE_Components_h>#define ATMEL_START</RTE_Components_h>
       <files>
+        <file category="doc" condition="ARMCC, GCC, IAR" name="modules/exint/doc/exint.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="modules/timer/doc/tc16.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="modules/timer/doc/tc8.rst"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="main.c"/>
@@ -53,11 +54,13 @@
         <file category="other" condition="ARMCC, GCC, IAR" name="doxygen/timer.dox"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="examples/include/pwm_basic_example.h"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="examples/src/pwm_basic_example.c"/>
+        <file category="header" condition="ARMCC, GCC, IAR" name="include/exint.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="include/port.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="include/protected_io.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="include/pwm_basic.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="include/sysctrl.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="include/system.h"/>
+        <file category="source" condition="ARMCC, GCC, IAR" name="src/exint.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="src/protected_io.S"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="src/pwm_basic.c"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="utils/assembler.h"/>

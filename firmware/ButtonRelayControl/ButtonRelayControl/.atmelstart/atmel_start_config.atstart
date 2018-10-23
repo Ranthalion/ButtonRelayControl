@@ -31,13 +31,10 @@ drivers:
       cpu_sreg_i: false
       enable_async_input: false
       enable_clkadc: false
-      enable_clkadc_enable: false
       enable_clkasy: false
-      enable_clkasy_enable: false
       enable_clkcpu: true
       enable_clkio: true
       enable_clkptc: false
-      enable_clkptc_enable: false
       enable_core_clock: true
       enable_input: true
       input_speed: 8000000
@@ -54,6 +51,80 @@ drivers:
         - name: Core
           input: Core
         configuration: {}
+  EXTERNAL_IRQ_0:
+    user_label: EXTERNAL_IRQ_0
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::EXINT::driver_config_definition::EXINT::Drivers:EXINT:Init
+    functionality: External_IRQ
+    api: Drivers:EXINT:Init
+    configuration:
+      exint_isc0: The low level of ISC0 generates an interrupt request
+      exint_isc1: The low level of ISC1 generates an interrupt request
+      inc_isr_harness: false
+    optional_signals:
+    - identifier: EXTERNAL_IRQ_0:PCINT/2
+      pad: PB2
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::EXINT.PCINT.2
+      name: EXINT/PCINT/2
+      label: PCINT/2
+    - identifier: EXTERNAL_IRQ_0:PCINT/18
+      pad: PD2
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::EXINT.PCINT.18
+      name: EXINT/PCINT/18
+      label: PCINT/18
+    - identifier: EXTERNAL_IRQ_0:PCINT/19
+      pad: PD3
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::EXINT.PCINT.19
+      name: EXINT/PCINT/19
+      label: PCINT/19
+    - identifier: EXTERNAL_IRQ_0:PCINT/23
+      pad: PD7
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::EXINT.PCINT.23
+      name: EXINT/PCINT/23
+      label: PCINT/23
+    variant: null
+    clocks:
+      domain_group: null
+  LED_SW2:
+    user_label: LED_SW2
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC0::driver_config_definition::TC8.Mode.3.Fast.PWM::Drivers:PWM:Basic
+    functionality: PWM
+    api: Drivers:PWM:Basic
+    configuration:
+      callback_rate: 0
+      inc_overflow_irq: false
+      pwm_top: '0xff'
+      tc8_coma: Set OCA on Compare Match, clear OCA on BOTTOM (inverting mode)
+      tc8_comb: Normal port operation, OCB disconnected
+      tc8_cs: IO clock divided by 64
+      tc8_ociea: false
+      tc8_ocieb: false
+      tc8_ocra: 152
+      tc8_ocrb: 0
+      tc8_toie: false
+    optional_signals:
+    - identifier: LED_SW2:OCA
+      pad: PD6
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::TC0.OCA
+      name: TC0/OCA
+      label: OCA
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC8
+          input: CLKio
+        configuration:
+          tc8_clock_source: CLKio
   LED_SW1:
     user_label: LED_SW1
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC1::driver_config_definition::TC16.Mode.5.Fast.8-bit.PWM::Drivers:PWM:Basic
@@ -61,7 +132,7 @@ drivers:
     api: Drivers:PWM:Basic
     configuration:
       callback_rate: 0
-      inc_overflow_irq: true
+      inc_overflow_irq: false
       pwm_top: '0xff'
       tc16_coma: Set OCA on Compare Match, clear OCA on BOTTOM (inverting mode)
       tc16_comb: Normal port operation, OCB disconnected
@@ -74,7 +145,7 @@ drivers:
       tc16_ocieb: false
       tc16_orca: 150
       tc16_orcb: 0
-      tc16_toie: true
+      tc16_toie: false
     optional_signals:
     - identifier: LED_SW1:OCA
       pad: PB1
@@ -83,36 +154,6 @@ drivers:
       definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::optional_signal_definition::TC1.OCA
       name: TC1/OCA
       label: OCA
-    variant: null
-    clocks:
-      domain_group:
-        nodes:
-        - name: TC16
-          input: CLKio
-        configuration:
-          tc16_clock_source: CLKio
-  LED_SW2:
-    user_label: LED_SW2
-    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC3::driver_config_definition::TC16.Mode.5.Fast.8-bit.PWM::Drivers:PWM:Basic
-    functionality: PWM
-    api: Drivers:PWM:Basic
-    configuration:
-      callback_rate: 0
-      inc_overflow_irq: true
-      pwm_top: '0xff'
-      tc16_coma: Set OCA on Compare Match, clear OCA on BOTTOM (inverting mode)
-      tc16_comb: Normal port operation, OCB disconnected
-      tc16_cs: IO clock divided by 64
-      tc16_ices: Falling edge will trigger input capture
-      tc16_icie: false
-      tc16_icnc: false
-      tc16_icr: 0
-      tc16_ociea: false
-      tc16_ocieb: false
-      tc16_orca: 100
-      tc16_orcb: 0
-      tc16_toie: true
-    optional_signals: []
     variant: null
     clocks:
       domain_group:
@@ -140,13 +181,18 @@ pads:
     mode: Digital output
     user_label: RELAY1
     configuration: null
+  PD6:
+    name: PD6
+    definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD6
+    mode: Digital output
+    user_label: PD6
+    configuration: null
   SW2:
     name: PD7
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD7
     mode: Digital input
     user_label: SW2
-    configuration:
-      pad_pull_config: Pull-up
+    configuration: null
   PB1:
     name: PB1
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB1
@@ -158,8 +204,7 @@ pads:
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PB2
     mode: Digital input
     user_label: SW1
-    configuration:
-      pad_pull_config: Pull-up
+    configuration: null
   LED:
     name: PD0
     definition: Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::pad::PD0

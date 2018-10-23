@@ -36,6 +36,68 @@
 #include "driver_init.h"
 #include <system.h>
 
+void EXTERNAL_IRQ_0_initialization(void)
+{
+
+	// Set pin direction to input
+	SW1_set_dir(PORT_DIR_IN);
+
+	SW1_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_OFF);
+
+	// Set pin direction to input
+	SENS2_set_dir(PORT_DIR_IN);
+
+	SENS2_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_OFF);
+
+	// Set pin direction to input
+	SENS1_set_dir(PORT_DIR_IN);
+
+	SENS1_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_OFF);
+
+	// Set pin direction to input
+	SW2_set_dir(PORT_DIR_IN);
+
+	SW2_set_pull_mode(
+	    // <y> Pull configuration
+	    // <id> pad_pull_config
+	    // <PORT_PULL_OFF"> Off
+	    // <PORT_PULL_UP"> Pull-up
+	    PORT_PULL_OFF);
+
+	EXTERNAL_IRQ_0_init();
+}
+
+void LED_SW2_initialization(void)
+{
+
+	// Set pin direction to output
+	PD6_set_dir(PORT_DIR_OUT);
+
+	PD6_set_level(
+	    // <y> Initial level
+	    // <id> pad_initial_level
+	    // <false"> Low
+	    // <true"> High
+	    false);
+
+	LED_SW2_init();
+}
+
 void LED_SW1_initialization(void)
 {
 
@@ -52,30 +114,12 @@ void LED_SW1_initialization(void)
 	LED_SW1_init();
 }
 
-void LED_SW2_initialization(void)
-{
-
-	LED_SW2_init();
-}
-
 /**
  * \brief System initialization
  */
 void system_init()
 {
 	mcu_init();
-
-	/* PORT setting on PB2 */
-
-	// Set pin direction to input
-	SW1_set_dir(PORT_DIR_IN);
-
-	SW1_set_pull_mode(
-	    // <y> Pull configuration
-	    // <id> pad_pull_config
-	    // <PORT_PULL_OFF"> Off
-	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_UP);
 
 	/* PORT setting on PB6 */
 
@@ -101,42 +145,6 @@ void system_init()
 	    // <true"> High
 	    true);
 
-	/* PORT setting on PD2 */
-
-	// Set pin direction to input
-	SENS2_set_dir(PORT_DIR_IN);
-
-	SENS2_set_pull_mode(
-	    // <y> Pull configuration
-	    // <id> pad_pull_config
-	    // <PORT_PULL_OFF"> Off
-	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_OFF);
-
-	/* PORT setting on PD3 */
-
-	// Set pin direction to input
-	SENS1_set_dir(PORT_DIR_IN);
-
-	SENS1_set_pull_mode(
-	    // <y> Pull configuration
-	    // <id> pad_pull_config
-	    // <PORT_PULL_OFF"> Off
-	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_OFF);
-
-	/* PORT setting on PD7 */
-
-	// Set pin direction to input
-	SW2_set_dir(PORT_DIR_IN);
-
-	SW2_set_pull_mode(
-	    // <y> Pull configuration
-	    // <id> pad_pull_config
-	    // <PORT_PULL_OFF"> Off
-	    // <PORT_PULL_UP"> Pull-up
-	    PORT_PULL_UP);
-
 	/* PORT setting on PE1 */
 
 	// Set pin direction to output
@@ -151,7 +159,9 @@ void system_init()
 
 	sysctrl_init();
 
-	LED_SW1_initialization();
+	EXTERNAL_IRQ_0_initialization();
 
 	LED_SW2_initialization();
+
+	LED_SW1_initialization();
 }

@@ -42,6 +42,7 @@
 #include <atmel_start_pins.h>
 
 #include <sysctrl.h>
+#include <exint.h>
 
 #include <interrupt_avr8.h>
 #include <pwm_basic.h>

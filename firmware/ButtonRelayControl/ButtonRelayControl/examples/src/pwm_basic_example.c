@@ -30,52 +30,11 @@
 #include <pwm_basic.h>
 #include <atomic.h>
 
-volatile uint16_t           LED_SW1_isr_executed_counter = 0;
-volatile LED_SW1_register_t LED_SW1_duty;
-
-void LED_SW1_pwm_handler_cb(void)
-{
-	LED_SW1_duty++;
-	// Output duty cycle on PWM CH0
-	LED_SW1_load_duty_cycle_ch0(LED_SW1_duty);
-	LED_SW1_isr_executed_counter++;
-}
-
 volatile uint16_t           LED_SW2_isr_executed_counter = 0;
 volatile LED_SW2_register_t LED_SW2_duty;
 
-void LED_SW2_pwm_handler_cb(void)
-{
-	LED_SW2_duty++;
-	// Output duty cycle on PWM CH0
-	LED_SW2_load_duty_cycle_ch0(LED_SW2_duty);
-	LED_SW2_isr_executed_counter++;
-}
-
-uint8_t LED_SW1_test_pwm_basic(void)
-{
-
-	// Enable pin output
-	LED_SW1_enable_output_ch0();
-
-	// Set channel 0 duty cycle value register value to specified value
-	LED_SW1_load_duty_cycle_ch0(0x3f);
-
-	// Set counter register value
-	LED_SW1_load_counter(0);
-
-	// Test IRQ mode
-
-	ENABLE_INTERRUPTS();
-
-	LED_SW1_register_callback(LED_SW1_pwm_handler_cb);
-
-	// Wait for ISR to be executed 65000 times
-	while (LED_SW1_isr_executed_counter < 65000)
-		;
-
-	return 1;
-}
+volatile uint16_t           LED_SW1_isr_executed_counter = 0;
+volatile LED_SW1_register_t LED_SW1_duty;
 
 uint8_t LED_SW2_test_pwm_basic(void)
 {
@@ -89,15 +48,20 @@ uint8_t LED_SW2_test_pwm_basic(void)
 	// Set counter register value
 	LED_SW2_load_counter(0);
 
-	// Test IRQ mode
+	return 1;
+}
 
-	ENABLE_INTERRUPTS();
+uint8_t LED_SW1_test_pwm_basic(void)
+{
 
-	LED_SW2_register_callback(LED_SW2_pwm_handler_cb);
+	// Enable pin output
+	LED_SW1_enable_output_ch0();
 
-	// Wait for ISR to be executed 65000 times
-	while (LED_SW2_isr_executed_counter < 65000)
-		;
+	// Set channel 0 duty cycle value register value to specified value
+	LED_SW1_load_duty_cycle_ch0(0x3f);
+
+	// Set counter register value
+	LED_SW1_load_counter(0);
 
 	return 1;
 }

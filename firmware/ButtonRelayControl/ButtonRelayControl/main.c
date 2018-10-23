@@ -1,4 +1,5 @@
 #include <atmel_start.h>
+#include <program.h>
 
 int main(void)
 {
@@ -7,5 +8,6 @@ int main(void)
 
 	/* Replace with your application code */
 	while (1) {
+		loop();
 	}
 }
