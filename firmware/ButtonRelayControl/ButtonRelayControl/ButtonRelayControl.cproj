@@ -51,21 +51,25 @@
         </TopLevelComponents>
         <AcmeActionInfos>
           <AcmeProjectActionInfo Action="File" Source="main.c" IsConfig="false" Hash="k0AH7j+BrmdFhBPzCCMptA" />
-          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="6howo9AYOwCZvhTzUpHjLw" />
-          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="1LsNIQR7eHs+xhqAV4y8Vg" />
+          <AcmeProjectActionInfo Action="File" Source="src/driver_init.c" IsConfig="false" Hash="pcrKZkZOMpCoPrOREmekvA" />
+          <AcmeProjectActionInfo Action="File" Source="include/driver_init.h" IsConfig="false" Hash="46VINyCYXxPQqTmZtpYRaA" />
           <AcmeProjectActionInfo Action="File" Source="include/atmel_start_pins.h" IsConfig="false" Hash="nKHaBqx9Ar2u2tgslWSsxg" />
           <AcmeProjectActionInfo Action="File" Source="driver_isr.c" IsConfig="false" Hash="NEhb8lat9JRyQUcEsiyX8A" />
           <AcmeProjectActionInfo Action="File" Source="examples/include/pwm_basic_example.h" IsConfig="false" Hash="wUBsHdJfRebw+JeKOwzjIA" />
+          <AcmeProjectActionInfo Action="File" Source="examples/include/timeout_example.h" IsConfig="false" Hash="Zi2h5ZOPYFwfvHYnVywZMA" />
           <AcmeProjectActionInfo Action="File" Source="examples/src/pwm_basic_example.c" IsConfig="false" Hash="pHc5Dush0XQmKQVehd7KGw" />
+          <AcmeProjectActionInfo Action="File" Source="examples/src/timeout_example.c" IsConfig="false" Hash="NJZS6tnd64UY0YzI/jVF6Q" />
           <AcmeProjectActionInfo Action="File" Source="include/exint.h" IsConfig="false" Hash="RjlP1BuzXGQX218QdTppzA" />
           <AcmeProjectActionInfo Action="File" Source="include/port.h" IsConfig="false" Hash="eEIuBCV+Do9SbSnnemwEEg" />
           <AcmeProjectActionInfo Action="File" Source="include/protected_io.h" IsConfig="false" Hash="tSFIfzqhAYuG1SUL75Vu1g" />
           <AcmeProjectActionInfo Action="File" Source="include/pwm_basic.h" IsConfig="false" Hash="5SpGD2nNYjQbElqsfOtPHw" />
           <AcmeProjectActionInfo Action="File" Source="include/sysctrl.h" IsConfig="false" Hash="UKe8iv+KaD6oBoKBqLBRfw" />
           <AcmeProjectActionInfo Action="File" Source="include/system.h" IsConfig="false" Hash="H9aIZiWtNcPpafJmKzgRDQ" />
+          <AcmeProjectActionInfo Action="File" Source="include/timeout.h" IsConfig="false" Hash="63Bd6naoegbIBZ2+qik/gw" />
           <AcmeProjectActionInfo Action="File" Source="src/exint.c" IsConfig="false" Hash="tiMKSI26F/bcw5RdpVGAOA" />
           <AcmeProjectActionInfo Action="File" Source="src/protected_io.S" IsConfig="false" Hash="xMwVxkDny+gUjOkARvQSWA" />
           <AcmeProjectActionInfo Action="File" Source="src/pwm_basic.c" IsConfig="false" Hash="yQoXUQT0XFh7IvbeOfepyA" />
+          <AcmeProjectActionInfo Action="File" Source="src/timeout.c" IsConfig="false" Hash="8SOdgN0NOkkONsuck5wElg" />
           <AcmeProjectActionInfo Action="File" Source="utils/assembler.h" IsConfig="false" Hash="jaaWqpCXnRJMciuXpjSfgQ" />
           <AcmeProjectActionInfo Action="File" Source="utils/assembler/gas.h" IsConfig="false" Hash="wV+34zXWOOJ7jfwQibBgLQ" />
           <AcmeProjectActionInfo Action="File" Source="utils/assembler/iar.h" IsConfig="false" Hash="re7qP3QC0FK72z2UZ4UoFg" />
@@ -76,7 +80,7 @@
           <AcmeProjectActionInfo Action="File" Source="utils/utils_assert.h" IsConfig="false" Hash="lJZG/QWOeOnUhe4wcXVztA" />
           <AcmeProjectActionInfo Action="File" Source="atmel_start.h" IsConfig="false" Hash="ZPe6iT3s4OihW8t8wDF53g" />
           <AcmeProjectActionInfo Action="File" Source="atmel_start.c" IsConfig="false" Hash="1RHIE7zTtYK4DURNPUqF9w" />
-          <AcmeProjectActionInfo Action="File" Source="config/clock_config.h" IsConfig="true" Hash="muFQftfEwWiTEENDh8w6Zg" />
+          <AcmeProjectActionInfo Action="File" Source="config/clock_config.h" IsConfig="true" Hash="jF9UyHR2OCIn+fly+MOcug" />
         </AcmeActionInfos>
         <NonsecureFilesInfo />
       </AcmeProjectConfig>
@@ -203,7 +207,13 @@
     <Compile Include="examples\include\pwm_basic_example.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="examples\include\timeout_example.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="examples\src\pwm_basic_example.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="examples\src\timeout_example.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\atmel_start_pins.h">
@@ -230,6 +240,9 @@
     <Compile Include="include\system.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\timeout.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -249,6 +262,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\pwm_basic.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\timeout.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="utils\assembler.h">
@@ -305,6 +321,9 @@
       <SubType>compile</SubType>
     </None>
     <None Include="doxygen\system.dox">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="doxygen\timeout.dox">
       <SubType>compile</SubType>
     </None>
     <None Include="doxygen\timer.dox">

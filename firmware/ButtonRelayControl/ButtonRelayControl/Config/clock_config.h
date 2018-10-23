@@ -25,6 +25,15 @@
 
 // </h>
 
+// <h> TC3 Clock Settings
+// <y> TC3 Clock source
+// <CLKio"> CLKio
+// <i> This defines the clock source for the TC3 module
+// <id> tc16_clock_source
+#define CONF_TC3_SRC CLKio
+
+// </h>
+
 // <<< end of configuration section >>>
 
 #endif // CLOCK_CONFIG_H

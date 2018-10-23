@@ -114,6 +114,12 @@ void LED_SW1_initialization(void)
 	LED_SW1_init();
 }
 
+void TIMER_0_initialization(void)
+{
+
+	TIMER_0_timeout_init();
+}
+
 /**
  * \brief System initialization
  */
@@ -164,4 +170,6 @@ void system_init()
 	LED_SW2_initialization();
 
 	LED_SW1_initialization();
+
+	TIMER_0_initialization();
 }

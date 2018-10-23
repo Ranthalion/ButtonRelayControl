@@ -50,6 +50,9 @@
 #include <interrupt_avr8.h>
 #include <pwm_basic.h>
 
+#include <interrupt_avr8.h>
+#include <timeout.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

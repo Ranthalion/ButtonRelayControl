@@ -162,6 +162,30 @@ drivers:
           input: CLKio
         configuration:
           tc16_clock_source: CLKio
+  TIMER_0:
+    user_label: TIMER_0
+    definition: 'Atmel:ATMega328PB_drivers:1.0.0::ATmega328PB-AU::TC3::driver_config_definition::Timeout::Drivers:Timeout:'
+    functionality: Timer
+    api: 'Drivers:Timeout:'
+    configuration:
+      tc16_coma: Normal port operation, OCA disconnected
+      tc16_comb: Normal port operation, OCB disconnected
+      tc16_cs: IO clock divided by 1024
+      tc16_ices: Falling edge will trigger input capture
+      tc16_icie: false
+      tc16_icnc: false
+      tc16_ociea: false
+      tc16_ocieb: false
+      tc16_toie: true
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC16
+          input: CLKio
+        configuration:
+          tc16_clock_source: CLKio
 pads:
   SENS1:
     name: PD3
