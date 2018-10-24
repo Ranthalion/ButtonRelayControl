@@ -32,6 +32,8 @@ _autosave-*
 [Dd]ebug/
 [Rr]elease/
 
+.vs/
+
 #Build Results
 *.o
 *.d

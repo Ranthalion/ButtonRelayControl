@@ -1,7 +1,7 @@
 /**
  * \file
  *
- * \brief PWM Basic driver example.
+ * \brief Timeout driver example.
  *
  (c) 2018 Microchip Technology Inc. and its subsidiaries.
 
@@ -25,43 +25,9 @@
  *
  */
 
-#include <atmel_start.h>
-#include <pwm_basic_example.h>
-#include <pwm_basic.h>
-#include <atomic.h>
+#ifndef TIMEOUT_EXAMPLE_H
+#define TIMEOUT_EXAMPLE_H
 
-volatile uint16_t           LED_SW2_isr_executed_counter = 0;
-volatile LED_SW2_register_t LED_SW2_duty;
+uint8_t TIMER_0_test_timeout(void);
 
-volatile uint16_t           LED_SW1_isr_executed_counter = 0;
-volatile LED_SW1_register_t LED_SW1_duty;
-
-uint8_t LED_SW2_test_pwm_basic(void)
-{
-
-	// Enable pin output
-	LED_SW2_enable_output_ch0();
-
-	// Set channel 0 duty cycle value register value to specified value
-	LED_SW2_load_duty_cycle_ch0(0x04);
-
-	// Set counter register value
-	LED_SW2_load_counter(0);
-
-	return 1;
-}
-
-uint8_t LED_SW1_test_pwm_basic(void)
-{
-
-	// Enable pin output
-	LED_SW1_enable_output_ch0();
-
-	// Set channel 0 duty cycle value register value to specified value
-	LED_SW1_load_duty_cycle_ch0(0x04);
-
-	// Set counter register value
-	LED_SW1_load_counter(0);
-
-	return 1;
-}
+#endif /* TIMEOUT_EXAMPLE_H */
