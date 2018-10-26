@@ -31,14 +31,14 @@ static inline void SW2_LED_set_level(const bool level)
 	PORTD_set_pin_level(6, level);
 }
 
-static absolutetime_t sw2_led_animation()
+static absolutetime_t sw1_led_animation()
 {
 	led1Frame++;
 	LED_SW1_load_duty_cycle_ch0(sine_wave[led1Frame]);
 	return ANIMATION_RATE;
 }
 
-static absolutetime_t sw1_led_animation()
+static absolutetime_t sw2_led_animation()
 {
 	led2Frame++;
 	LED_SW2_load_duty_cycle_ch0(sine_wave[led2Frame]);

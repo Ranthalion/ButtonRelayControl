@@ -116,6 +116,8 @@ void startupAnimation()
 		LED_toggle_level();
 		_delay_ms(50);
 	}
+	SW1_LED_flash();
+	SW2_LED_flash();
 }
 
 void handleRunningState()
@@ -194,10 +196,16 @@ void handleChannel1State()
 			break;
 			
 		case Long_Press: 
-			SW1_LED_Pulse();
-			//TODO: Turn on relay (but what if the sensor is already tripped?
-			RELAY1_set_level(true);
-			channel1_state = Monitor_On;
+			if(SENS2_get_level() == false)
+			{
+				channel2_state = Stop;
+			}
+			else
+			{
+				SW1_LED_Pulse();
+				RELAY1_set_level(true);
+				channel1_state = Monitor_On;
+			}
 			break;
 		
 		case Static_On:
@@ -212,6 +220,10 @@ void handleChannel1State()
 			if (sw1.buttonUp == true)
 			{
 				sw1.buttonUp = false;
+				channel1_state = Stop;
+			}
+			if(SENS1_get_level() == false)
+			{
 				channel1_state = Stop;
 			}
 			break;
@@ -267,21 +279,33 @@ void handleChannel2State()
 			break;
 		
 		case Long_Press:
-			SW2_LED_Pulse();
-			//TODO: Turn on relay (but what if the sensor is already tripped?
-			RELAY2_set_level(true);
-			channel2_state = Monitor_On;
+			if(SENS2_get_level() == false)
+			{
+				channel2_state = Stop;
+			}
+			else
+			{
+				SW2_LED_Pulse();
+				RELAY2_set_level(true);
+				channel2_state = Monitor_On;
+			}
 			break;
 		
 		case Static_On:
 			if (sw2.buttonUp == true)
 			{
+				sw2.buttonUp = false;
 				channel2_state = Stop;
 			}
 			break;
 		
 		case Monitor_On:
 			if (sw2.buttonUp == true)
+			{
+				sw2.buttonUp = false;
+				channel2_state = Stop;
+			}
+			if(SENS2_get_level() == false)
 			{
 				channel2_state = Stop;
 			}
@@ -290,7 +314,6 @@ void handleChannel2State()
 		case Stop:
 			RELAY2_set_level(false);
 			SW2_LED_Off();
-			sw2.buttonUp = false;
 			channel2_state = Idle;
 			break;
 		
