@@ -93,7 +93,7 @@ void LED_SW2_initialization(void)
 	    // <id> pad_initial_level
 	    // <false"> Low
 	    // <true"> High
-	    false);
+	    true);
 
 	LED_SW2_init();
 }
@@ -109,7 +109,7 @@ void LED_SW1_initialization(void)
 	    // <id> pad_initial_level
 	    // <false"> Low
 	    // <true"> High
-	    false);
+	    true);
 
 	LED_SW1_init();
 }
