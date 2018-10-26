@@ -3,18 +3,20 @@
 #include <timeout.h>
 #include <button.h>
 #include <util/delay.h>
+#include <avr/sleep.h>
 
 #define BUTTON_RATE 90
+#define SLEEP_THRESHOLD 500
 
 static absolutetime_t led_off();
 void startupAnimation();
 void handleRunningState();
 void handleIdleState();
-void handleTestState();
 void handleChannel1State();
 void handleChannel2State();
 
 volatile int x = 0;
+volatile uint32_t idleCounter = 0;
 
 button_struct_t sw1;
 button_struct_t sw2;
@@ -40,6 +42,9 @@ static absolutetime_t button_cb()
 {
 	ReadButton(&sw1);
 	ReadButton(&sw2);
+	idleCounter++;
+	if(idleCounter % 20 == 0)
+		LED_toggle_level();
 	return BUTTON_RATE;
 }
 
@@ -90,14 +95,23 @@ int main(void)
 			
 			case System_Running:
 				handleRunningState();
+				if (channel1_state == Idle && channel2_state == Idle)
+				{
+					if (idleCounter > SLEEP_THRESHOLD)
+					{
+						system_state = System_Idle;	
+					}					
+				}
+				else
+				{
+					idleCounter = 0;
+				}
 				break;
 			
 			case System_Idle:
 				handleIdleState();
-				break;
-				
-			case Test:
-				handleTestState();
+				idleCounter = 0;
+				system_state = System_Running;
 				break;
 				
 			default:
@@ -109,7 +123,7 @@ int main(void)
 
 void startupAnimation()
 {
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < 5; i++)
 	{
 		LED_toggle_level();
 		_delay_ms(50);
@@ -127,35 +141,16 @@ void handleRunningState()
 	handleChannel2State();
 }
 
-void handleTestState()
-{
-	
-	TIMER_0_timeout_call_next_callback();
-	//handleChannel1State();
-	//handleChannel2State();
-	SW1_LED_On();
-	_delay_ms(500);
-	SW1_LED_Off();
-	_delay_ms(500);
-	
-	LED_toggle_level();
-	
-	PB1_set_dir(PORT_DIR_OUT);
-	PB1_set_level(true);
-	LED_SW1_init();
-	LED_SW1_load_duty_cycle_ch0(5);
-	//LED_SW1_load_counter(0);
-	
-	_delay_ms(500);
-	LED_toggle_level();
-	SW1_LED_Off();
-	_delay_ms(500);
-}
-
 void handleIdleState()
 {
-	//TODO: Keep idle timer and go into sleep mode 
-	
+		_delay_ms(1);
+		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+		DISABLE_INTERRUPTS();
+		sleep_enable();
+		ENABLE_INTERRUPTS();
+		sleep_cpu();
+		sleep_disable();
+		idleCounter = 0;		
 }
 
 void handleChannel1State()
