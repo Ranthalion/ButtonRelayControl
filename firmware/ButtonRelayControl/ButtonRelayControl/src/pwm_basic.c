@@ -68,28 +68,6 @@ int8_t LED_SW2_init()
 }
 
 /**
- * \brief Enable LED_SW2
- * 1. If supported by the clock system, enables the clock to the PWM
- * 2. Enables the PWM module by setting the enable-bit in the PWM control register
- *
- * \return Nothing
- */
-void LED_SW2_enable()
-{
-}
-
-/**
- * \brief Disable LED_SW2
- * 1. Disables the PWM module by clearing the enable-bit in the PWM control register
- * 2. If supported by the clock system, disables the clock to the PWM
- *
- * \return Nothing
- */
-void LED_SW2_disable()
-{
-}
-
-/**
  * \brief Enable PWM output on channel 0
  *
  * \return Nothing
@@ -108,29 +86,7 @@ void LED_SW2_enable_output_ch0()
 void LED_SW2_disable_output_ch0()
 {
 
-	TCCR0A &= ~((0 << COM0A1) | (0 << COM0A0));
-}
-
-/**
- * \brief Enable PWM output on channel 1
- *
- * \return Nothing
- */
-void LED_SW2_enable_output_ch1()
-{
-
-	TCCR0A |= ((0 << COM0B1) | (0 << COM0B0));
-}
-
-/**
- * \brief Disable PWM output on channel 1
- *
- * \return Nothing
- */
-void LED_SW2_disable_output_ch1()
-{
-
-	TCCR0A &= ~((0 << COM0B1) | (0 << COM0B0));
+	TCCR0A &= ~((1 << COM0A1) | (1 << COM0A0));
 }
 
 /**
@@ -160,20 +116,6 @@ void LED_SW2_load_duty_cycle_ch0(LED_SW2_register_t duty_value)
 	OCR0A = duty_value;
 }
 
-/**
- * \brief Load duty cycle register in for channel 1.
- * The physical register may have different names, depending on the hardware.
- * This is not the duty cycle as percentage of the whole period, but the actual
- * counter compare value.
- *
- * \param[in] counter_value The value to load into the duty cycle register.
- *
- * \return Nothing
- */
-void LED_SW2_load_duty_cycle_ch1(LED_SW2_register_t duty_value)
-{
-	OCR0B = duty_value;
-}
 
 /**
  * \brief Initialize PWM
@@ -212,28 +154,6 @@ int8_t LED_SW1_init()
 }
 
 /**
- * \brief Enable LED_SW1
- * 1. If supported by the clock system, enables the clock to the PWM
- * 2. Enables the PWM module by setting the enable-bit in the PWM control register
- *
- * \return Nothing
- */
-void LED_SW1_enable()
-{
-}
-
-/**
- * \brief Disable LED_SW1
- * 1. Disables the PWM module by clearing the enable-bit in the PWM control register
- * 2. If supported by the clock system, disables the clock to the PWM
- *
- * \return Nothing
- */
-void LED_SW1_disable()
-{
-}
-
-/**
  * \brief Enable PWM output on channel 0
  *
  * \return Nothing
@@ -251,31 +171,9 @@ void LED_SW1_enable_output_ch0()
  */
 void LED_SW1_disable_output_ch0()
 {
-
-	TCCR1A &= ~((0 << COM1A1) | (0 << COM1A0));
+	TCCR1A &= ~((1 << COM1A1) | (1 << COM1A0));
 }
 
-/**
- * \brief Enable PWM output on channel 1
- *
- * \return Nothing
- */
-void LED_SW1_enable_output_ch1()
-{
-
-	TCCR1A |= ((0 << COM1B1) | (0 << COM1B0));
-}
-
-/**
- * \brief Disable PWM output on channel 1
- *
- * \return Nothing
- */
-void LED_SW1_disable_output_ch1()
-{
-
-	TCCR1A &= ~((0 << COM1B1) | (0 << COM1B0));
-}
 
 /**
  * \brief Load COUNTER register in LED_SW1
@@ -302,19 +200,4 @@ void LED_SW1_load_counter(LED_SW1_register_t counter_value)
 void LED_SW1_load_duty_cycle_ch0(LED_SW1_register_t duty_value)
 {
 	OCR1A = duty_value;
-}
-
-/**
- * \brief Load duty cycle register in for channel 1.
- * The physical register may have different names, depending on the hardware.
- * This is not the duty cycle as percentage of the whole period, but the actual
- * counter compare value.
- *
- * \param[in] counter_value The value to load into the duty cycle register.
- *
- * \return Nothing
- */
-void LED_SW1_load_duty_cycle_ch1(LED_SW1_register_t duty_value)
-{
-	OCR1B = duty_value;
 }

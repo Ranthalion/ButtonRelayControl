@@ -1,31 +1,25 @@
 #include <atmel_start.h>
 #include <program.h>
 #include <timeout.h>
-#include <pwm_basic_example.h>
-#include <led_animation.h>
 #include <button.h>
 #include <util/delay.h>
 
-#define ANIMATION_RATE 80
 #define BUTTON_RATE 90
 
 static absolutetime_t led_off();
-static absolutetime_t sw1_led_off();
-static absolutetime_t sw2_led_off();
+void startupAnimation();
+void handleRunningState();
+void handleIdleState();
+void handleTestState();
+void handleChannel1State();
+void handleChannel2State();
 
-void flash_sw1_led();
-void flash_sw2_led();
-
-volatile int x;
-volatile uint8_t led1Frame;
-volatile uint8_t led2Frame;
+volatile int x = 0;
 
 button_struct_t sw1;
 button_struct_t sw2;
 
 timer_struct_t led_timer = {led_off, NULL};
-timer_struct_t sw1_led_timer = {sw1_led_off, NULL};
-timer_struct_t sw2_led_timer = {sw2_led_off, NULL};
 
 static absolutetime_t led_cb()
 {
@@ -41,26 +35,11 @@ static absolutetime_t led_cb()
 	return 8; // Stop the timer
 }
 
-static absolutetime_t sw1_led_animation()
-{
-	led1Frame++;
-	LED_SW1_load_duty_cycle_ch0(sine_wave[led1Frame]);
-	return ANIMATION_RATE;	
-}
-
-static absolutetime_t sw2_led_animation()
-{
-	led2Frame++;
-	LED_SW2_load_duty_cycle_ch0(sine_wave[led2Frame]);
-	return ANIMATION_RATE;
-}
 
 static absolutetime_t button_cb()
 {
-	//TODO: Check the buttons
 	ReadButton(&sw1);
 	ReadButton(&sw2);
-	//LED_set_level(PORTB_get_pin_level(2));
 	return BUTTON_RATE;
 }
 
@@ -70,117 +49,252 @@ static absolutetime_t led_off()
 	return 0;
 }
 
-static absolutetime_t sw1_led_off()
-{
-	PD6_set_dir(PORT_DIR_IN);
-	SW1_LED_set_level(true);
-	return 0;
-}
-
-static absolutetime_t sw2_led_off()
-{
-	PB1_set_dir(PORT_DIR_IN);
-	SW2_LED_set_level(true);
-	return 0;
-}
-
 void LED_flash()
 {
 	LED_set_level(false);
 	TIMER_0_timeout_create(&led_timer, 10);
 }
 
-void SW1_LED_flash()
-{
-	PD6_set_dir(PORT_DIR_OUT);
-	SW1_LED_set_level(false);
-	TIMER_0_timeout_create(&sw1_led_timer, 10);
-}
+enum System_State { System_Power_On, System_Idle, System_Running, System_Error, Test};
+enum Channel_State {Idle, Button_Down, Button_Held, Short_Press, Long_Press, Static_On, Monitor_On, Stop};
 
-void SW2_LED_flash()
-{
-	PB1_set_dir(PORT_DIR_OUT);
-	SW2_LED_set_level(false);
-	TIMER_0_timeout_create(&sw2_led_timer, 10);
-}
+enum System_State system_state = System_Power_On;
+enum Channel_State channel1_state = Idle;
+enum Channel_State channel2_state = Idle;
 
 int main(void)
 {
-	x = 0;
-	
 	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
-		
-	LED_toggle_level();
-	_delay_ms(50);
-	LED_toggle_level();
-	_delay_ms(50);
-	LED_toggle_level();
-	_delay_ms(50);
-	LED_toggle_level();
-	_delay_ms(200);
 
 	timer_struct_t led_timer = {led_cb, NULL};
-	timer_struct_t sw1_led_animation_timer = {sw1_led_animation, NULL};
-	timer_struct_t sw2_led_animation_timer = {sw2_led_animation, NULL};
-	timer_struct_t button_timer = {button_cb, NULL};
 
-	PB1_set_dir(PORT_DIR_IN);
-	PB1_set_level(true);
-	
-	PD6_set_dir(PORT_DIR_IN);
-	PD6_set_level(true);
+	SW1_LED_Off();
+	SW2_LED_Off();
 
-	InitializeButton(&sw2, &PINB, PINB2);
-	_delay_ms(500);
-	InitializeButton(&sw1, &PIND, PIND7);
-	
-	//LED_SW2_load_duty_cycle_ch0(0);
-	//LED_SW1_load_duty_cycle_ch0(0);
+	InitializeButton(&sw1, &PINB, PINB2);
+	InitializeButton(&sw2, &PIND, PIND7);
 	
 	ENABLE_INTERRUPTS();
 
-	//LED_SW1_enable_output_ch0();
-
-	//TIMER_0_timeout_create(&led_timer, 8);
-	//PB1_set_dir(PORT_DIR_OUT);
-	//TIMER_0_timeout_create(&sw1_led_animation_timer, ANIMATION_RATE);
-	//TIMER_0_timeout_create(&sw2_led_animation_timer, ANIMATION_RATE);
+	timer_struct_t button_timer = {button_cb, NULL};
 	TIMER_0_timeout_create(&button_timer, BUTTON_RATE);
 
-
-	//LED_SW1_test_pwm_basic();
-	
-	
-	/* Replace with your application code */
 	while (1) {
-		TIMER_0_timeout_call_next_callback();
-		
-		if (sw1.buttonDown == true)
-		{
-			sw1.buttonDown = false;
+		switch(system_state) {
+			case System_Power_On:
+				startupAnimation();
+				system_state = System_Running;
+				//system_state = Test;
+			break;
+			
+			case System_Running:
+				handleRunningState();
+				break;
+			
+			case System_Idle:
+				handleIdleState();
+				break;
+				
+			case Test:
+				handleTestState();
+				break;
+				
+			default:
+				system_state = System_Power_On;
+				break;
+		}
+	}
+}
+
+void startupAnimation()
+{
+	for(int i = 0; i < 10; i++)
+	{
+		LED_toggle_level();
+		_delay_ms(50);
+		LED_toggle_level();
+		_delay_ms(50);
+	}
+}
+
+void handleRunningState()
+{
+	TIMER_0_timeout_call_next_callback();
+	handleChannel1State();
+	handleChannel2State();
+}
+
+void handleTestState()
+{
+	
+	TIMER_0_timeout_call_next_callback();
+	//handleChannel1State();
+	//handleChannel2State();
+	SW1_LED_On();
+	_delay_ms(500);
+	SW1_LED_Off();
+	_delay_ms(500);
+	
+	LED_toggle_level();
+	
+	PB1_set_dir(PORT_DIR_OUT);
+	PB1_set_level(true);
+	LED_SW1_init();
+	LED_SW1_load_duty_cycle_ch0(5);
+	//LED_SW1_load_counter(0);
+	
+	_delay_ms(500);
+	LED_toggle_level();
+	SW1_LED_Off();
+	_delay_ms(500);
+}
+
+void handleIdleState()
+{
+	//TODO: Keep idle timer and go into sleep mode 
+	
+}
+
+void handleChannel1State()
+{
+	switch(channel1_state) {
+		case Idle:
+			if (sw1.buttonDown == true)
+			{
+				sw1.buttonDown = false;
+				channel1_state = Button_Down;				
+			}			
+			break;
+			
+		case Button_Down:		
 			SW1_LED_flash();
-		}
+			channel1_state = Button_Held;
+			break;
+			
+		case Button_Held:
+			if (sw1.buttonUp == true)
+			{
+				sw1.buttonUp = false;
+				if (sw1.duration > BUTTON_HOLD_THRESHOLD )
+				{
+					channel1_state = Long_Press;					
+				}
+				else
+				{
+					channel1_state = Short_Press;					
+				}
+			}
+			break;
+			
+		case Short_Press: 
+			SW1_LED_On();
+			RELAY1_set_level(true);
+			channel1_state = Static_On;
+			break;
+			
+		case Long_Press: 
+			SW1_LED_Pulse();
+			//TODO: Turn on relay (but what if the sensor is already tripped?
+			RELAY1_set_level(true);
+			channel1_state = Monitor_On;
+			break;
+		
+		case Static_On:
+			if (sw1.buttonUp == true)
+			{
+				sw1.buttonUp = false;
+				channel1_state = Stop;
+			}
+			break;
+		
+		case Monitor_On:
+			if (sw1.buttonUp == true)
+			{
+				sw1.buttonUp = false;
+				channel1_state = Stop;
+			}
+			break;
+		
+		case Stop: 
+			RELAY1_set_level(false);
+			SW1_LED_Off();
+			channel1_state = Idle;
+			break;
+			
+		default:
+			
+			break;
+	}	
+}
 
-		if (sw2.buttonDown == true)
-		{
-			sw2.buttonDown = false;
+void handleChannel2State()
+{
+	
+	switch(channel2_state) {
+		case Idle:
+			if (sw2.buttonDown == true)
+			{
+				sw2.buttonDown = false;
+				channel2_state = Button_Down;
+			}
+			break;
+		
+		case Button_Down:
 			SW2_LED_flash();
-		}
+			channel2_state = Button_Held;
+			break;
 		
-
-		if (sw1.buttonUp == true)
-		{
-			sw1.buttonUp = false;
-			LED_toggle_level();
-		}
+		case Button_Held:
+			if (sw2.buttonUp == true)
+			{
+				sw2.buttonUp = false;
+				if (sw2.duration > BUTTON_HOLD_THRESHOLD )
+				{
+					channel2_state = Long_Press;
+				}
+				else
+				{
+					channel2_state = Short_Press;
+				}
+			}
+			break;
 		
-		if (sw2.buttonUp == true)
-		{
+		case Short_Press:
+			SW2_LED_On();
+			RELAY2_set_level(true);
+			channel2_state = Static_On;
+			break;
+		
+		case Long_Press:
+			SW2_LED_Pulse();
+			//TODO: Turn on relay (but what if the sensor is already tripped?
+			RELAY2_set_level(true);
+			channel2_state = Monitor_On;
+			break;
+		
+		case Static_On:
+			if (sw2.buttonUp == true)
+			{
+				channel2_state = Stop;
+			}
+			break;
+		
+		case Monitor_On:
+			if (sw2.buttonUp == true)
+			{
+				channel2_state = Stop;
+			}
+			break;
+		
+		case Stop:
+			RELAY2_set_level(false);
+			SW2_LED_Off();
 			sw2.buttonUp = false;
-			LED_toggle_level();
-		}
+			channel2_state = Idle;
+			break;
 		
-		//loop();
+		default:
+			break;
 	}
 }

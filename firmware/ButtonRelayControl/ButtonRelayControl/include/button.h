@@ -9,12 +9,12 @@
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
+#define BUTTON_HOLD_THRESHOLD 50
+
 #include <stdint.h>
 #include <stdbool.h>
 #include <port.h>
-#define F_CPU 8000000
-
-#define DEBOUNCE_THRESHOLD 5
+#include <timeout.h>
 
 typedef struct button_struct_s {
 	volatile uint8_t *port;
@@ -31,14 +31,20 @@ void InitializeButton(button_struct_t* button, volatile uint8_t *port, uint8_t p
 
 void ReadButton(button_struct_t* button);
 
-static inline void SW1_LED_set_level(const bool level)
-{
-	PORTB_set_pin_level(1, level);
-}
+void SW1_LED_flash();
 
-static inline void SW2_LED_set_level(const bool level)
-{
-	PORTD_set_pin_level(6, level);
-}
+void SW2_LED_flash();
+
+void SW1_LED_Off();
+
+void SW2_LED_Off();
+
+void SW1_LED_On();
+
+void SW2_LED_On();
+
+void SW1_LED_Pulse();
+
+void SW2_LED_Pulse();
 
 #endif /* BUTTON_H_ */
