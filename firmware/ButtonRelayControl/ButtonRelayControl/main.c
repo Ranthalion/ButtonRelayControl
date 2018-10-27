@@ -34,7 +34,7 @@ static absolutetime_t led_cb()
 	if (x > 1000)
 		x=0;
 		
-	return 8; // Stop the timer
+	return 8; 
 }
 
 
@@ -43,8 +43,6 @@ static absolutetime_t button_cb()
 	ReadButton(&sw1);
 	ReadButton(&sw2);
 	idleCounter++;
-	if(idleCounter % 20 == 0)
-		LED_toggle_level();
 	return BUTTON_RATE;
 }
 
