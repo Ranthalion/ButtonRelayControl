@@ -189,9 +189,9 @@ void handleChannel1State()
 			break;
 			
 		case Long_Press: 
-			if(SENS2_get_level() == false)
+			if(SENS1_get_level() == false)
 			{
-				channel2_state = Stop;
+				channel1_state = Stop;
 			}
 			else
 			{
